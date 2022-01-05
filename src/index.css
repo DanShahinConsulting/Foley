@@ -4,6 +4,14 @@ body {
   max-width: 38rem;
   padding: 2rem;
 }
-audio.pressed{
+audio{
+  /* max-width: 100px; */
+}
+audio::-webkit-media-controls-panel {
+  background-color: #56AEFF;
+  
+}
+
+audio.pressed::-webkit-media-controls-panel {
   background-color: orange;
 }

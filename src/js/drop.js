@@ -83,7 +83,7 @@ $(document).ready(function(){
     function validateImage(image) {
         // check the type
         console.log(image.type)
-        var validTypes = ['audio/mpeg'];
+        var validTypes = ['audio/mpeg','audio/wav','audio/ogg'];
         if (validTypes.indexOf( image.type ) === -1) {
             console.error("Invalid File Type");
             return false;

@@ -20,7 +20,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "icons/phonograph.icns"
+        "icon": "icons/megaphone.icns"
       },
       "makers": [
         {
