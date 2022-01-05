@@ -1,8 +1,8 @@
 {
   "name": "foley",
-  "productName": "foley",
+  "productName": "Foley",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Simple Sound FX Board",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -19,7 +19,9 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "icons/phonograph.icns"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",

@@ -2,10 +2,15 @@ $(document).ready(function(){
     var // where files are dropped + file selector is opened
     $dropRegions = $('.drop-region').not('img'),
     dropRegion = $('.drop-region')[0];
+    const userSounds = JSON.parse(localStorage.getItem('userSounds') )|| [];
+    $('#clear').on('click', function(){
+        localStorage.removeItem('userSounds' );
+        $('#sounds').empty();
+    })
     
     let containerType ;
 
-    const userSounds = JSON.parse(localStorage.getItem('userSounds') )|| [];
+    
     getSounds(userSounds);
     $dropRegions.each( function( index, element ) {
         console.log( $( this ).text() );
@@ -59,8 +64,6 @@ $(document).ready(function(){
             fileType = $(e.currentTarget).data('type');
             $zone = $(e.target);
             $zone.removeClass('drop-enter');
-            // console.log(e)
-            //alert(fileType)
     
         if (files.length) {
     
@@ -69,10 +72,6 @@ $(document).ready(function(){
         } 
     
     }
-    
-    // dropRegion.addEventListener('drop', handleDrop, false);
-    
-    
     
     function handleFiles(files,fileType) {
         for (var i = 0, len = files.length; i < len; i++) {
@@ -122,18 +121,18 @@ $(document).ready(function(){
                 name: image.name
             })
             localStorage.setItem('userSounds', JSON.stringify(userSounds) );
+            createSoundBox(audio);
         }
         reader.readAsDataURL(image);
-        createSoundBox(audio);
+        
+        
     
-        // create FormData
-        // var formData = new FormData();
-        // formData.append('image', image);
+  
         
     }
 
     function getSounds(){
-
+        
         userSounds.forEach(createSoundBox);
         $( "#sounds" ).sortable();
     }

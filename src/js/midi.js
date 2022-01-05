@@ -37,15 +37,7 @@ navigator.requestMIDIAccess()
         while (note   >= numSounds ){
             note = (numSounds - note) * -1;
         }
-
-        console.log({note});
-        // let buttonId = `#${sounds[note].name}`.replaceAll(" ","-")
-        //console.log(buttonId)
         sounds[note].volume = normalize(velocity,127,60);
-        
-        //$(buttonId).addClass('pressed');
-        // sounds[note].elem().play();
-        console.log(sounds[note])
         $(sounds[note]).addClass('pressed').trigger("play");
     }
     function noteOff(note){
@@ -58,9 +50,6 @@ navigator.requestMIDIAccess()
         console.log({note});
         $(sounds[note]).removeClass('pressed').trigger("pause");
         sounds[note].currentTime = 0;
-        // sounds[note].fx.currentTime = 0;
-        // let buttonId = `#${sounds[note].name}`.replaceAll(" ","-")
-        // $(buttonId).removeClass('pressed');
 
     }
     
