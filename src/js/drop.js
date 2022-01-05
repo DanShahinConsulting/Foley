@@ -147,11 +147,29 @@ $(document).ready(function(){
         var outerElem =  document.createElement("div");
             var elem = document.createElement("audio");
             var label = document.createElement("span");
+            var wave = document.createElement("div");
+            //wave.innerHTML = 'hey now'
+            let r = 'x' + (Math.random() + 1).toString(36).substring(7);
+            wave.id = r;
             label.innerHTML = audio.name;
             elem.controls = 'controls';
             elem.src = audio.src;
-            $(outerElem).addClass('draggable').append( elem).append(label);
+            $(outerElem).addClass('draggable').append(elem).append(label).append(wave);
             $('#sounds').append(outerElem);
+
+            var wavesurfer = WaveSurfer.create({
+                container: `#${r}`
+            });
+
+            wavesurfer.on('ready', function () {
+                //wavesurfer.play();
+            });
+
+            $(label).click(function(){
+                wavesurfer.play();
+            });
+
+            wavesurfer.load(audio.src);
     }
 
     function onDocumentKeyUp( event ) {
