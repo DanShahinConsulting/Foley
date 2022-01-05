@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    document.addEventListener( 'keypress', onDocumentKeyPress );
+    //document.addEventListener( 'keypress', onDocumentKeyPress );
 	document.addEventListener( 'keydown', onDocumentKeyDown );
     document.addEventListener( 'keyup', onDocumentKeyUp );
 
@@ -145,20 +145,48 @@ $(document).ready(function(){
 
     function createSoundBox(audio){
         var outerElem =  document.createElement("div");
+        container =  document.createElement("container");
             var elem = document.createElement("audio");
             var label = document.createElement("span");
             var wave = document.createElement("div");
             //wave.innerHTML = 'hey now'
             let r = 'x' + (Math.random() + 1).toString(36).substring(7);
             wave.id = r;
+            $(wave).addClass('audio-player')
             label.innerHTML = audio.name;
-            elem.controls = 'controls';
-            elem.src = audio.src;
-            $(outerElem).addClass('draggable').append(elem).append(label).append(wave);
+            // elem.controls = 'controls';
+            // elem.src = audio.src;
+            $(container).addClass('container')
+            $(outerElem).addClass('draggable').append(label).append(wave);
             $('#sounds').append(outerElem);
 
             var wavesurfer = WaveSurfer.create({
-                container: `#${r}`
+                container: `#${r}`,
+                waveColor: 'red',
+                progressColor: 'black',
+                backend: 'MediaElement',
+                // plugins: [
+                //     WaveSurfer.regions.create({
+                //         regionsMinLength: 2,
+                //         regions: [
+                //             {
+                //                 start: 1,
+                //                 end: 3,
+                //                 loop: false,
+                //                 color: 'hsla(400, 100%, 30%, 0.5)'
+                //             }, {
+                //                 start: 5,
+                //                 end: 7,
+                //                 loop: false,
+                //                 color: 'hsla(200, 50%, 70%, 0.4)',
+                //                 minLength: 1,
+                //             }
+                //         ],
+                //         dragSelection: {
+                //             slop: 5
+                //         }
+                //     })
+                // ]
             });
 
             wavesurfer.on('ready', function () {
@@ -188,8 +216,8 @@ $(document).ready(function(){
         while (keyCode >= numSounds){
             keyCode = (numSounds - keyCode) * -1;
         }
-        sounds[keyCode].currentTime = 0;
-        $(sounds[keyCode]).removeClass('pressed').trigger("pause");
+        // sounds[keyCode].currentTime = 0;
+        // $(sounds[keyCode]).removeClass('pressed').trigger("pause");
         
     }
 
@@ -231,22 +259,22 @@ $(document).ready(function(){
 
     }
 
-    function onDocumentKeyPress( event ) {
+    // function onDocumentKeyPress( event ) {
 
-        const keyCode = event.which;
+    //     const keyCode = event.which;
 
-        // backspace
-        console.log(event.key)
+    //     // backspace
+    //     console.log(event.key)
 
-        if ( keyCode == 8 ) {
+    //     if ( keyCode == 8 ) {
 
-            event.preventDefault();
+    //         event.preventDefault();
 
-        } else {
+    //     } else {
 
-            const ch = String.fromCharCode( keyCode );
-        }
+    //         const ch = String.fromCharCode( keyCode );
+    //     }
 
-    }
+    // }
     
     });
