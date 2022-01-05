@@ -4,3 +4,6 @@ body {
   max-width: 38rem;
   padding: 2rem;
 }
+audio.pressed{
+  background-color: orange;
+}

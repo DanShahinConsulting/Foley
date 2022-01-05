@@ -135,7 +135,7 @@ $(document).ready(function(){
     function getSounds(){
 
         userSounds.forEach(createSoundBox);
-        $( ".draggable" ).draggable();
+        $( "#sounds" ).sortable();
     }
 
     function createSoundBox(audio){
@@ -146,7 +146,7 @@ $(document).ready(function(){
             elem.controls = 'controls';
             elem.src = audio.src;
             $(outerElem).addClass('draggable').append( elem).append(label);
-            $('#drop').append(outerElem);
+            $('#sounds').append(outerElem);
     }
     
     });
