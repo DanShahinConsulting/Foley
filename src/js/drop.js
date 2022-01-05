@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+    document.addEventListener( 'keypress', onDocumentKeyPress );
+	document.addEventListener( 'keydown', onDocumentKeyDown );
+    document.addEventListener( 'keyup', onDocumentKeyUp );
+
+
     var // where files are dropped + file selector is opened
     $dropRegions = $('.drop-region').not('img'),
     dropRegion = $('.drop-region')[0];
@@ -146,6 +152,83 @@ $(document).ready(function(){
             elem.src = audio.src;
             $(outerElem).addClass('draggable').append( elem).append(label);
             $('#sounds').append(outerElem);
+    }
+
+    function onDocumentKeyUp( event ) {
+
+        var keyCode = event.keyCode;
+        if(event.key >0 && event.key<= 9){
+            keyCode = event.key - 1;
+        }
+        if(event.key == 0){
+            keyCode = 10;
+        }
+
+        let sounds = $('audio')
+        numSounds = sounds.length;
+    
+        while (keyCode >= numSounds){
+            keyCode = (numSounds - keyCode) * -1;
+        }
+        sounds[keyCode].currentTime = 0;
+        $(sounds[keyCode]).removeClass('pressed').trigger("pause");
+        
+    }
+
+    function onDocumentKeyDown( event ) {
+
+        console.log(event.keyCode)
+        var keyCode = event.keyCode;
+        if(event.key >0 && event.key<= 9){
+            keyCode = event.key - 1;
+        }
+        if(event.key == 0){
+            keyCode = 10;
+        }
+
+
+        let sounds = $('audio')
+        numSounds = sounds.length;
+    
+        while (keyCode >= numSounds){
+            keyCode = (numSounds - keyCode) * -1;
+        }
+
+        $(sounds[keyCode]).addClass('pressed').trigger("play");
+
+        
+
+        // backspace
+
+        if ( keyCode == 8 ) {
+
+            event.preventDefault();
+
+            text = text.substring( 0, text.length - 1 );
+            refreshText();
+
+            return false;
+
+        }
+
+    }
+
+    function onDocumentKeyPress( event ) {
+
+        const keyCode = event.which;
+
+        // backspace
+        console.log(event.key)
+
+        if ( keyCode == 8 ) {
+
+            event.preventDefault();
+
+        } else {
+
+            const ch = String.fromCharCode( keyCode );
+        }
+
     }
     
     });
