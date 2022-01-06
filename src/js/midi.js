@@ -49,7 +49,7 @@ navigator.requestMIDIAccess()
         }
         console.log({note});
         $(sounds[note]).removeClass('pressed').trigger("pause");
-        // sounds[note].currentTime = 0;
+        //sounds[note].currentTime = 0;
 
     }
     

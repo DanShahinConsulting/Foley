@@ -194,7 +194,7 @@ $(document).ready(function(){
             });
 
             $(label).click(function(){
-                wavesurfer.play();
+                wavesurfer.playPause();
             });
 
             wavesurfer.load(audio.src);
@@ -217,7 +217,7 @@ $(document).ready(function(){
             keyCode = (numSounds - keyCode) * -1;
         }
         // sounds[keyCode].currentTime = 0;
-        // $(sounds[keyCode]).removeClass('pressed').trigger("pause");
+        $(sounds[keyCode]).removeClass('pressed').trigger("pause");
         
     }
 
