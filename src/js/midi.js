@@ -38,7 +38,7 @@ navigator.requestMIDIAccess()
             note = (numSounds - note) * -1;
         }
         sounds[note].volume = normalize(velocity,127,60);
-        $(sounds[note]).addClass('pressed').trigger("play");
+        $(sounds[note]).addClass('pressed').trigger("play").parent().parent().addClass('selected').filter('audio').focus();
     }
     function noteOff(note){
         let sounds = $('audio')
@@ -48,7 +48,7 @@ navigator.requestMIDIAccess()
             note = (numSounds - note) * -1;
         }
         console.log({note});
-        $(sounds[note]).removeClass('pressed').trigger("pause");
+        $(sounds[note]).removeClass('pressed').trigger("pause").parent().parent().removeClass('selected').filter('audio').blur();
         //sounds[note].currentTime = 0;
 
     }

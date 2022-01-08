@@ -4,6 +4,8 @@ $(document).ready(function(){
 	document.addEventListener( 'keydown', onDocumentKeyDown );
     document.addEventListener( 'keyup', onDocumentKeyUp );
 
+    
+
 
     var // where files are dropped + file selector is opened
     $dropRegions = $('.drop-region').not('img'),
@@ -144,49 +146,39 @@ $(document).ready(function(){
     }
 
     function createSoundBox(audio){
-        var outerElem =  document.createElement("div");
-        container =  document.createElement("container");
+        var outerElem =  document.createElement("li");
+        // container =  document.createElement("container");
             var elem = document.createElement("audio");
             var label = document.createElement("span");
             var wave = document.createElement("div");
-            //wave.innerHTML = 'hey now'
+            var li = document.createElement("div");
+
             let r = 'x' + (Math.random() + 1).toString(36).substring(7);
             wave.id = r;
-            $(wave).addClass('audio-player')
-            label.innerHTML = audio.name;
-            // elem.controls = 'controls';
-            // elem.src = audio.src;
-            $(container).addClass('container')
-            $(outerElem).addClass('draggable').append(label).append(wave);
+            $(wave).addClass('audio-player').addClass('waveform')
+            label.innerHTML = audio.name ;
+
+            $(outerElem).addClass('draggable').append(label).append(wave).dblclick(function(){
+                if(confirm('really remove it?')){
+                    $(this).remove()
+                }
+            });
             $('#sounds').append(outerElem);
 
             var wavesurfer = WaveSurfer.create({
                 container: `#${r}`,
-                waveColor: 'red',
-                progressColor: 'black',
+                vertical: false,
+                waveColor: 'steelblue',
+                progressColor: 'gray',
                 backend: 'MediaElement',
-                // plugins: [
-                //     WaveSurfer.regions.create({
-                //         regionsMinLength: 2,
-                //         regions: [
-                //             {
-                //                 start: 1,
-                //                 end: 3,
-                //                 loop: false,
-                //                 color: 'hsla(400, 100%, 30%, 0.5)'
-                //             }, {
-                //                 start: 5,
-                //                 end: 7,
-                //                 loop: false,
-                //                 color: 'hsla(200, 50%, 70%, 0.4)',
-                //                 minLength: 1,
-                //             }
-                //         ],
-                //         dragSelection: {
-                //             slop: 5
-                //         }
-                //     })
-                // ]
+                mediaControls : true,
+                responsive : true,
+                maxCanvasWidth : 500,
+                height: 32,
+                // width: 500,
+                barWidth: 5,
+                barHeight: 5, // the height of the wave
+                barGap: 2 // the optional spacing between bars of the wave, if not provided will be calculated in legacy format
             });
 
             wavesurfer.on('ready', function () {
@@ -203,6 +195,16 @@ $(document).ready(function(){
     function onDocumentKeyUp( event ) {
 
         var keyCode = event.keyCode;
+        if ( keyCode == 9 ){
+            return false;
+        }
+        //backspace
+        if ( keyCode == 8 || keyCode == 9 || keyCode == 91 || keyCode == 32 ) {
+
+            event.preventDefault();
+            return false;
+
+        }
         if(event.key >0 && event.key<= 9){
             keyCode = event.key - 1;
         }
@@ -217,14 +219,33 @@ $(document).ready(function(){
             keyCode = (numSounds - keyCode) * -1;
         }
         // sounds[keyCode].currentTime = 0;
-        $(sounds[keyCode]).removeClass('pressed').trigger("pause");
+        $( `li:nth-child(${keyCode + 1})` ).removeClass('selected')
+        $(sounds[keyCode]).removeClass('pressed').trigger("play").blur();
         
     }
 
     function onDocumentKeyDown( event ) {
+        var keyCode = event.keyCode;
+        if ( keyCode == 9 ){
+            return false;
+        }
+        //backspace
+        if ( keyCode == 8 || keyCode == 91 || keyCode  == 9) {
+
+            event.preventDefault();
+            return false;
+
+        }
+        let sounds = $('audio')
+        if ( keyCode == 32 ) {
+            sounds.trigger("pause")
+            event.preventDefault();
+            return false;
+
+        }
 
         console.log(event.keyCode)
-        var keyCode = event.keyCode;
+        
         if(event.key >0 && event.key<= 9){
             keyCode = event.key - 1;
         }
@@ -233,29 +254,19 @@ $(document).ready(function(){
         }
 
 
-        let sounds = $('audio')
+        
         numSounds = sounds.length;
     
         while (keyCode >= numSounds){
             keyCode = (numSounds - keyCode) * -1;
         }
 
-        $(sounds[keyCode]).addClass('pressed').trigger("play");
-
-        
-
+        sounds[keyCode].currentTime = 0;
+        $( `li:nth-child(${keyCode + 1})` ).addClass('selected')
+        $(sounds[keyCode]).addClass('pressed').trigger("pause").focus();
         // backspace
 
-        if ( keyCode == 8 ) {
-
-            event.preventDefault();
-
-            text = text.substring( 0, text.length - 1 );
-            refreshText();
-
-            return false;
-
-        }
+        
 
     }
 

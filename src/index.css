@@ -1,17 +1,61 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: auto;
-  max-width: 38rem;
+  /* width: 100vw; */
+  height: 100vh;
   padding: 2rem;
-}
-audio{
-  /* max-width: 100px; */
-}
-audio::-webkit-media-controls-panel {
-  background-color: #56AEFF;
-  
+
 }
 
-audio.pressed::-webkit-media-controls-panel {
-  background-color: orange;
+ /* Main waveform */
+ .waveform {
+  width: 100%;
+  min-height: 8rem;
+  padding: 0.5rem 0;
+}
+
+
+audio:focus {
+  background-color: none;
+  outline: none;
+}
+audio:focus::-webkit-media-controls-panel {
+  background-color: lightskyblue;
+}
+
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+ol li {
+  counter-increment: my-awesome-counter;
+  display: flex;
+  min-width: 300px;
+  max-width: 33vw;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  height: 100px;
+}
+ol li::before {
+  content: "" counter(my-awesome-counter);
+  font-weight: bold;
+  font-size: 3rem;
+  margin-right: 0.5rem;
+  font-family: 'Abril Fatface', serif;
+  line-height: 1;
+}
+
+
+
+
+li:hover{
+  cursor: grab;
+}
+li.selected {
+  background-color: lightskyblue;
 }

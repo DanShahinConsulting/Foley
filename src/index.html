@@ -10,15 +10,16 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <script src="js/wavesurfer.js"></script>
     
+    <script src="js/wavesurfer.cursor.js"></script>
     <script src="js/wavesurfer.timeline.js"></script>
     <script src="js/wavesurfer.regions.js"></script>
     <script src="js/wavesurfer.minimap.js"></script>
   </head>
-  <body>
-    <h1>📣 Drop a sound</h1>
-    <button id="clear">Clear sounds</button>
+  <body class="img-container drop-region thumbnail" data-type="thumbnail">
+    <!-- <h4>📣 Drop a sound</h1>
+    <button id="clear">Clear sounds</button> -->
    
-    <div  id="drop" class="img-container drop-region thumbnail" data-type="thumbnail">
+    <div  id="drop" >
       <ol id="sounds">
 
       </ol>
