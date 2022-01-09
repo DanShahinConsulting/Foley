@@ -142,7 +142,17 @@ $(document).ready(function(){
     function getSounds(){
         
         userSounds.forEach(createSoundBox);
-        $( "#sounds" ).sortable();
+        $( "#sounds" ).sortable({
+            update: function(event, ui) { 
+                console.log('update: '+ui.item.index())
+                console.log('started at' + $(ui.item).data('startindex'))
+                moveSound($(ui.item).data('startindex'),ui.item.index())
+            },
+            start: function(event, ui) { 
+                console.log('start: ' + ui.item.index())
+                $(ui.item).data('startindex', ui.item.index())
+            }
+        });
     }
 
     function createSoundBox(audio){
@@ -159,8 +169,15 @@ $(document).ready(function(){
             label.innerHTML = audio.name ;
 
             $(outerElem).addClass('draggable').append(label).append(wave).dblclick(function(){
+                let userSounds = JSON.parse(localStorage.getItem('userSounds') )|| [];
+                let index = $( "li" ).index( this ) ;
+                userSounds.splice(index,1);
+                localStorage.setItem('userSounds', JSON.stringify(userSounds) );
+                
                 if(confirm('really remove it?')){
                     $(this).remove()
+                }else{
+
                 }
             });
             $('#sounds').append(outerElem);
@@ -269,6 +286,24 @@ $(document).ready(function(){
         
 
     }
+
+    function moveSound(startIndex,newIndex){
+        let userSounds = JSON.parse(localStorage.getItem('userSounds') )|| [];
+        array_move(userSounds,startIndex,newIndex);
+        localStorage.setItem('userSounds', JSON.stringify(userSounds) );
+    }
+
+    function array_move(arr, old_index, new_index) {
+        if (new_index >= arr.length) {
+            var k = new_index - arr.length + 1;
+            while (k--) {
+                arr.push(undefined);
+            }
+        }
+        arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+        return arr; // for testing
+    };
+    
 
     // function onDocumentKeyPress( event ) {
 
