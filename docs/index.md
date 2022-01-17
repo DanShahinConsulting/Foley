@@ -1,13 +1,23 @@
-## Welcome to GitHub Pages
+## Foley 
 
-You can use the [editor on GitHub](https://github.com/DanShahinConsulting/Foley/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Simple drag and drop soundboard
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Installing
+- supports .mp3 .wav and .ogg
+- stores sounds in localstorage
+- keyboard shortcuts
+- midi controller support
+
+### Download and Install
+- [MacOS](https://github.com/DanShahinConsulting/Foley/dist/Foley-darwin-x64-1.0.0.zip)
+
+
+
+
+### Installation
 
 ```markdown
-installation
+
 - `yarn install`
 - `npm start`
 ```
