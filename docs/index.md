@@ -25,6 +25,12 @@ We're looking for people to help build this app for other platforms
 - `npm start`
 ```
 
+### Building Binaries for other platforms
+
+```markdown
+- `yarn make`
+```
+
 ### Support the project
 
 <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="danshahin" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy me a comic book!" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
