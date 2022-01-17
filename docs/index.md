@@ -8,6 +8,7 @@ Simple drag and drop soundboard.
 - stores sounds in localstorage
 - keyboard shortcuts
 - midi controller support
+- wavesurfer visualization integration
 
 ### Prebuilt App
 We're looking for people to help build this app for other platforms
