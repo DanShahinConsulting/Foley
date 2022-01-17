@@ -1,7 +1,8 @@
 ## Foley 
 
-Simple drag and drop soundboard
+Simple drag and drop soundboard.
 
+![Tux, the Linux mascot](img/screenshot.png)
 
 - supports .mp3 .wav and .ogg
 - stores sounds in localstorage
@@ -9,6 +10,7 @@ Simple drag and drop soundboard
 - midi controller support
 
 ### Prebuilt App
+We're looking for people to help build this app for other platforms
 - [MacOS](dist/Foley-darwin-x64-1.0.0.zip)
 
 
