@@ -9,7 +9,7 @@ Simple drag and drop soundboard
 - midi controller support
 
 ### Download and Install
-- [MacOS](https://github.com/DanShahinConsulting/Foley/dist/Foley-darwin-x64-1.0.0.zip)
+- [MacOS](https://github.com/DanShahinConsulting/Foley/blob/main/dist/Foley-darwin-x64-1.0.0.zip)
 
 
 
