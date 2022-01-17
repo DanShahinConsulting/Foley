@@ -1,4 +1,4 @@
-## Foley 
+## <img src="img/megaphone.png" alt="drawing" width="50" align="middle"/> Foley 
 
 Simple drag and drop soundboard.
 
